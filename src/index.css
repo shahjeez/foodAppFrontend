@@ -1,0 +1,143 @@
+:root {
+  font-family: "Inter", system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #f4f4f4;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #7a00ff;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+a:hover {
+  color: #5800b3;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 320px;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #20002c, #4e0068);
+  color: white;
+  padding: 20px;
+}
+
+/* Headings */
+h1 {
+  font-size: 2.8em;
+  font-weight: 600;
+  line-height: 1.2;
+  text-align: center;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+
+/* Buttons */
+button {
+  border-radius: 6px;
+  border: none;
+  padding: 12px 20px;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background: #9500b3;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 10px rgba(149, 0, 179, 0.3);
+}
+
+button:hover {
+  background: #7a00ff;
+  transform: scale(1.05);
+}
+
+button:focus,
+button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.5);
+}
+
+/* Form Inputs */
+input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1em;
+  background: #222;
+  color: white;
+  transition: border 0.3s ease-in-out;
+}
+
+input:focus {
+  border-color: #9500b3;
+  outline: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 2.2em;
+  }
+
+  input {
+    max-width: 100%;
+  }
+
+  button {
+    width: 100%;
+  }
+}
+
+/* Light Mode */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+
+  body {
+    background: linear-gradient(135deg, #f9f9f9, #eaeaea);
+    color: #213547;
+  }
+
+  a {
+    color: #6200ea;
+  }
+
+  button {
+    background: #7a00ff;
+    color: white;
+  }
+
+  button:hover {
+    background: #5a00cc;
+  }
+
+  input {
+    background: white;
+    color: black;
+    border: 1px solid #ccc;
+  }
+}
