@@ -7,6 +7,7 @@ const Ingredients = ({ username, setIsAuthenticated }) => {
   const [dish, setDish] = useState("");
   const [servings, setServings] = useState(1);
   const [ingredients, setIngredients] = useState([]);
+  const [procedure, setProcedure] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -16,9 +17,15 @@ const Ingredients = ({ username, setIsAuthenticated }) => {
     try {
       const token = localStorage.getItem("token");
       const data = await fetchIngredients(dish, servings, token);
-      setIngredients(data);
+
+      if (!data || !data.ingredients || !data.procedure) {
+        throw new Error("Invalid response format from server");
+      }
+
+      setIngredients(data.ingredients);
+      setProcedure(data.procedure);
     } catch (err) {
-      setError("Failed to fetch ingredients.");
+      setError(err.message || "Failed to fetch recipe details.");
     }
     setLoading(false);
   };
@@ -70,6 +77,13 @@ const Ingredients = ({ username, setIsAuthenticated }) => {
           </table>
         )}
       </div>
+      <hr />
+      {procedure && (
+        <div className='procedure-container'>
+          <h3>Cooking Procedure</h3>
+          <p>{procedure}</p>
+        </div>
+      )}
     </div>
   );
 };

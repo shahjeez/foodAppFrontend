@@ -11,15 +11,34 @@ const api = axios.create({
 
 export const fetchIngredients = async (dish, servings, token) => {
   try {
-    const response = await api.post(
-      "/api/ai/get-ingredients",
+    const response = await axios.post(
+      "http://localhost:4000/api/ai/get-ingredients",
       { dish, servings },
-      { headers: { Authorization: `Bearer ${token}` } }
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      }
     );
-    return response.data.ingredients;
+
+    if (
+      !response.data ||
+      !response.data.ingredients ||
+      !response.data.procedure
+    ) {
+      throw new Error("Invalid response format from server");
+    }
+
+    return response.data;
   } catch (error) {
-    console.error("Error fetching ingredients:", error);
-    throw error;
+    console.error(
+      "Error fetching ingredients:",
+      error.response?.data || error.message
+    );
+    throw new Error(
+      error.response?.data?.error || "Failed to fetch ingredients"
+    );
   }
 };
 

@@ -27,6 +27,17 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        {/* Default Route (Redirect based on authentication) */}
+        <Route
+          path='/'
+          element={
+            isAuthenticated ? (
+              <Navigate to='/ingredients' />
+            ) : (
+              <Navigate to='/login' />
+            )
+          }
+        />
         <Route
           path='/ingredients'
           element={
@@ -47,10 +58,6 @@ const App = () => {
               <Login setIsAuthenticated={setIsAuthenticated} />
             )
           }
-        />
-        <Route
-          path='/ingredients'
-          element={isAuthenticated ? <Ingredients /> : <Navigate to='/login' />}
         />
       </Routes>
     </Router>
